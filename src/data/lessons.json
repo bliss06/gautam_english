@@ -1,0 +1,131 @@
+[
+  {
+    "id": "unit-1",
+    "title": "Animals 🐾",
+    "emoji": "🐾",
+    "color": "#f59e0b",
+    "lessons": [
+      {
+        "id": "l1",
+        "title": "Meet the Animals",
+        "questions": [
+          {
+            "type": "pick-picture",
+            "prompt": "Which one is a CAT?",
+            "word": "cat",
+            "options": [
+              { "emoji": "🐱", "label": "cat", "correct": true },
+              { "emoji": "🐶", "label": "dog", "correct": false },
+              { "emoji": "🐸", "label": "frog", "correct": false },
+              { "emoji": "🐰", "label": "rabbit", "correct": false }
+            ]
+          },
+          {
+            "type": "speak-repeat",
+            "prompt": "Say this out loud!",
+            "word": "The dog is big",
+            "hint": "Listen first, then speak"
+          },
+          {
+            "type": "match-pair",
+            "prompt": "Match the animal to its name",
+            "pairs": [
+              { "emoji": "🐱", "word": "cat" },
+              { "emoji": "🐶", "word": "dog" },
+              { "emoji": "🐸", "word": "frog" }
+            ]
+          },
+          {
+            "type": "pick-picture",
+            "prompt": "Which one is a RABBIT?",
+            "word": "rabbit",
+            "options": [
+              { "emoji": "🐯", "label": "tiger", "correct": false },
+              { "emoji": "🐘", "label": "elephant", "correct": false },
+              { "emoji": "🐰", "label": "rabbit", "correct": true },
+              { "emoji": "🦊", "label": "fox", "correct": false }
+            ]
+          },
+          {
+            "type": "speak-repeat",
+            "prompt": "Say this out loud!",
+            "word": "The cat is small",
+            "hint": "Listen first, then speak"
+          },
+          {
+            "type": "build-sentence",
+            "prompt": "Build the sentence: The frog is green",
+            "words": ["is", "The", "green", "frog", "big"],
+            "answer": ["The", "frog", "is", "green"]
+          }
+        ]
+      },
+      {
+        "id": "l2",
+        "title": "Animal Sounds",
+        "questions": [
+          {
+            "type": "speak-repeat",
+            "prompt": "Say this out loud!",
+            "word": "The cow says moo",
+            "hint": "Say it slowly and clearly"
+          },
+          {
+            "type": "pick-picture",
+            "prompt": "Which one is a COW?",
+            "word": "cow",
+            "options": [
+              { "emoji": "🐄", "label": "cow", "correct": true },
+              { "emoji": "🐖", "label": "pig", "correct": false },
+              { "emoji": "🐑", "label": "sheep", "correct": false },
+              { "emoji": "🐓", "label": "hen", "correct": false }
+            ]
+          },
+          {
+            "type": "speak-repeat",
+            "prompt": "Say this out loud!",
+            "word": "The duck says quack",
+            "hint": "Listen first, then speak"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "unit-2",
+    "title": "Colors 🎨",
+    "emoji": "🎨",
+    "color": "#ec4899",
+    "lessons": [
+      {
+        "id": "l3",
+        "title": "Learn Colors",
+        "questions": [
+          {
+            "type": "pick-picture",
+            "prompt": "Which is RED?",
+            "word": "red",
+            "options": [
+              { "emoji": "🔴", "label": "red", "correct": true },
+              { "emoji": "🔵", "label": "blue", "correct": false },
+              { "emoji": "🟢", "label": "green", "correct": false },
+              { "emoji": "🟡", "label": "yellow", "correct": false }
+            ]
+          },
+          {
+            "type": "speak-repeat",
+            "prompt": "Say this out loud!",
+            "word": "The sky is blue",
+            "hint": "Nice and clear!"
+          },
+          {
+            "type": "build-sentence",
+            "prompt": "Build the sentence: The apple is red",
+            "words": ["apple", "The", "green", "is", "red"],
+            "answer": ["The", "apple", "is", "red"]
+          }
+        ]
+      }
+    ]
+  }
+]

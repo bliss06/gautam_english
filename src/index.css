@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: 'Nunito', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: #f0f4ff;
+  overscroll-behavior: none;
+}
+
+.btn-bounce {
+  transition: transform 0.1s ease;
+}
+.btn-bounce:active {
+  transform: scale(0.95);
+}
