@@ -3,6 +3,7 @@ import PickPicture from './PickPicture';
 import SpeakRepeat from './SpeakRepeat';
 import BuildSentence from './BuildSentence';
 import MatchPair from './MatchPair';
+import ListenBuild from './ListenBuild';
 
 const HEARTS = 3;
 
@@ -52,6 +53,7 @@ export default function LessonRunner({ lesson, onComplete, onExit }) {
     'speak-repeat': SpeakRepeat,
     'build-sentence': BuildSentence,
     'match-pair': MatchPair,
+    'listen-build': ListenBuild,
   }[question.type];
 
   return (

@@ -53,10 +53,9 @@
             "hint": "Listen first, then speak"
           },
           {
-            "type": "build-sentence",
-            "prompt": "Build the sentence: The frog is green",
-            "words": ["is", "The", "green", "frog", "big"],
-            "answer": ["The", "frog", "is", "green"]
+            "type": "listen-build",
+            "words": ["is", "The", "on", "mat", "cat", "the"],
+            "answer": ["The", "cat", "is", "on", "the", "mat"]
           }
         ]
       },
@@ -82,10 +81,9 @@
             ]
           },
           {
-            "type": "speak-repeat",
-            "prompt": "Say this out loud!",
-            "word": "The duck says quack",
-            "hint": "Listen first, then speak"
+            "type": "listen-build",
+            "words": ["quack", "duck", "says", "The"],
+            "answer": ["The", "duck", "says", "quack"]
           }
         ]
       }
