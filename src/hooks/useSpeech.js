@@ -8,7 +8,6 @@ export function useTTS() {
     utter.lang = 'en-US';
     utter.rate = rate;
     utter.pitch = 1.1;
-    // Prefer a friendly voice
     const voices = window.speechSynthesis.getVoices();
     const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || (v.lang === 'en-US' && v.localService));
     if (preferred) utter.voice = preferred;
@@ -28,37 +27,45 @@ export function useSpeechRecognition() {
   const isSupported = typeof window !== 'undefined' &&
     ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
 
-  const startListening = useCallback(() => {
-    if (!isSupported) {
-      setError('Speech recognition not supported on this device.');
-      return;
-    }
-
-    setTranscript('');
-    setError(null);
-
+  const startRecognizer = useCallback(() => {
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
     const rec = new SR();
     rec.lang = 'en-US';
     rec.interimResults = false;
     rec.maxAlternatives = 1;
-
-    rec.onresult = (e) => {
-      const result = e.results[0][0].transcript;
-      setTranscript(result);
-    };
-
+    rec.onresult = (e) => setTranscript(e.results[0][0].transcript);
     rec.onerror = (e) => {
-      setError(e.error === 'not-allowed' ? 'Microphone permission denied.' : 'Could not hear clearly. Try again.');
+      setError(e.error === 'not-allowed'
+        ? 'Microphone denied. Go to Settings → Privacy & Security → Microphone.'
+        : 'Could not hear clearly. Try again.');
       setListening(false);
     };
-
     rec.onend = () => setListening(false);
-
     rec.start();
     recognizerRef.current = rec;
     setListening(true);
-  }, [isSupported]);
+  }, []);
+
+  // NOT async — must stay synchronous so iOS treats getUserMedia
+  // as directly triggered by the user's tap gesture.
+  // async/await breaks this chain in standalone PWA mode.
+  const startListening = useCallback(() => {
+    if (!isSupported) {
+      setError('Speech recognition not supported on this device.');
+      return;
+    }
+    setTranscript('');
+    setError(null);
+
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then((stream) => {
+        stream.getTracks().forEach(t => t.stop());
+        startRecognizer();
+      })
+      .catch(() => {
+        setError('Microphone access denied. Enable it in Settings → Privacy & Security → Microphone.');
+      });
+  }, [isSupported, startRecognizer]);
 
   const stopListening = useCallback(() => {
     recognizerRef.current?.stop();
