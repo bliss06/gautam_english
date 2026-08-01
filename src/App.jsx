@@ -61,7 +61,8 @@ export default function App() {
 
   // UNIT SCREEN
   if (screen === 'unit' && activeUnit) return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-500 to-indigo-700 flex flex-col pt-12 pb-8 px-6">
+    <div className="min-h-screen bg-gradient-to-b from-indigo-500 to-indigo-700 flex flex-col pb-8 px-6"
+      style={{ paddingTop: 'max(3rem, env(safe-area-inset-top))' }}>
       <button onClick={() => setScreen('home')} className="text-white text-lg font-bold mb-4 self-start">← Back</button>
       <div className="text-center mb-6">
         <div className="text-6xl">{activeUnit.emoji}</div>

@@ -62,10 +62,14 @@ export default function LessonRunner({ lesson, onComplete, onExit }) {
 
   return (
     <div className="flex flex-col h-full">
-      {/* Top bar */}
-      <div className="flex items-center gap-3 p-4 pb-2">
-        <button onClick={onExit} aria-label="Close lesson"
-          className="flex items-center justify-center w-11 h-11 -ml-2 text-gray-400 text-2xl font-bold rounded-full active:bg-gray-100">✕</button>
+      {/* Top bar. paddingTop clears the iOS status bar / notch in standalone PWA
+          mode — content there sits under the status bar (viewport-fit=cover +
+          black-translucent in index.html) and doesn't reliably receive taps. */}
+      <div className="flex items-center gap-3 px-4 pb-2" style={{ paddingTop: 'max(1rem, env(safe-area-inset-top))' }}>
+        <button onClick={onExit}
+          className="btn-bounce flex items-center min-h-11 text-gray-500 font-bold text-lg px-2 -ml-2 rounded-lg active:bg-gray-100">
+          ← Back
+        </button>
         <div className="flex-1 bg-gray-200 rounded-full h-3">
           <div className="bg-indigo-500 h-3 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }} />
