@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTTS, useSpeechRecognition } from '../hooks/useSpeech';
 import { scoreSpeech, getScoreLabel } from '../utils/speechScore';
 
@@ -7,6 +7,15 @@ export default function SpeakRepeat({ question, onAnswer }) {
   const { transcript, listening, error, isSupported, startListening, stopListening } = useSpeechRecognition();
   const [result, setResult] = useState(null);
   const [attempts, setAttempts] = useState(0);
+  const answeredRef = useRef(false);
+
+  // Advance exactly once, whether the pass came from recognition or a
+  // self-report tap (guards against a double-fire race like FillBlank had).
+  const finish = (pass) => {
+    if (answeredRef.current) return;
+    answeredRef.current = true;
+    setTimeout(() => onAnswer(pass), 1400);
+  };
 
   useEffect(() => {
     // Auto-play the word when question loads
@@ -21,7 +30,7 @@ export default function SpeakRepeat({ question, onAnswer }) {
       setResult({ transcript, score, label });
 
       if (label.pass || attempts >= 2) {
-        setTimeout(() => onAnswer(true), 1400);
+        finish(true);
       } else {
         setAttempts(a => a + 1);
         setTimeout(() => setResult(null), 1800);
@@ -45,8 +54,8 @@ export default function SpeakRepeat({ question, onAnswer }) {
         🔊 Listen
       </button>
 
-      {/* Mic button */}
-      {isSupported ? (
+      {/* Mic button (only when the browser can actually listen) */}
+      {isSupported && (
         <button
           onClick={listening ? stopListening : startListening}
           className={`btn-bounce flex items-center gap-2 font-bold px-8 py-4 rounded-full text-xl border-4 shadow-lg transition-all
@@ -55,8 +64,6 @@ export default function SpeakRepeat({ question, onAnswer }) {
               : 'bg-green-500 text-white border-green-600'}`}>
           {listening ? '⏹ Stop' : '🎙️ Speak'}
         </button>
-      ) : (
-        <p className="text-red-500 text-sm text-center">Speech recognition not supported on this browser.</p>
       )}
 
       {/* Result feedback */}
@@ -69,10 +76,26 @@ export default function SpeakRepeat({ question, onAnswer }) {
         </div>
       )}
 
-      {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+      {error && <p className="text-orange-500 text-sm text-center max-w-xs">{error}</p>}
 
-      {attempts >= 2 && !result && (
-        <button onClick={() => onAnswer(true)}
+      {/* Fallback: iOS Safari has no reliable speech recognition, so never trap
+          the learner — let them say it out loud and self-report to continue. */}
+      {(!isSupported || error) && !result && (
+        <div className="flex flex-col items-center gap-2">
+          {!isSupported && (
+            <p className="text-gray-500 text-sm text-center max-w-xs">
+              Speech check isn't available on this device. Say it out loud, then tap below.
+            </p>
+          )}
+          <button onClick={() => finish(true)}
+            className="btn-bounce flex items-center gap-2 bg-green-500 text-white font-bold px-8 py-4 rounded-full text-xl border-4 border-green-600 shadow-lg">
+            🎤 I said it!
+          </button>
+        </div>
+      )}
+
+      {isSupported && attempts >= 2 && !result && (
+        <button onClick={() => finish(true)}
           className="text-gray-400 text-sm underline mt-2">
           Skip this one
         </button>
