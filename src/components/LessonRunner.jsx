@@ -5,6 +5,7 @@ import BuildSentence from './BuildSentence';
 import MatchPair from './MatchPair';
 import ListenBuild from './ListenBuild';
 import FillBlank from './FillBlank';
+import SpellWord from './SpellWord';
 
 const HEARTS = 3;
 
@@ -56,6 +57,7 @@ export default function LessonRunner({ lesson, onComplete, onExit }) {
     'match-pair': MatchPair,
     'listen-build': ListenBuild,
     'fill-blank': FillBlank,
+    'spell-word': SpellWord,
   }[question.type];
 
   return (

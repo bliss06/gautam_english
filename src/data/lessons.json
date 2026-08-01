@@ -1,5 +1,45 @@
 [
   {
+    "id": "unit-spelling",
+    "title": "Spelling 🔤",
+    "emoji": "🔤",
+    "color": "#8b5cf6",
+    "lessons": [
+      {
+        "id": "spell-simple",
+        "title": "Simple",
+        "questions": [
+          { "type": "spell-word", "word": "cat" },
+          { "type": "spell-word", "word": "dog" },
+          { "type": "spell-word", "word": "sun" },
+          { "type": "spell-word", "word": "hat" },
+          { "type": "spell-word", "word": "pig" },
+          { "type": "spell-word", "word": "run" },
+          { "type": "spell-word", "word": "box" },
+          { "type": "spell-word", "word": "bed" },
+          { "type": "spell-word", "word": "cup" },
+          { "type": "spell-word", "word": "bus" }
+        ]
+      },
+      {
+        "id": "spell-intermediate",
+        "title": "Intermediate",
+        "questions": [
+          { "type": "spell-word", "word": "plant" },
+          { "type": "spell-word", "word": "happy" },
+          { "type": "spell-word", "word": "water" },
+          { "type": "spell-word", "word": "green" },
+          { "type": "spell-word", "word": "apple" },
+          { "type": "spell-word", "word": "house" },
+          { "type": "spell-word", "word": "table" },
+          { "type": "spell-word", "word": "chair" },
+          { "type": "spell-word", "word": "smile" },
+          { "type": "spell-word", "word": "mouse" }
+        ]
+      }
+    ]
+  },
+  {
     "id": "unit-1",
     "title": "Animals 🐾",
     "emoji": "🐾",
