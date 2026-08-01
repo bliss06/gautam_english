@@ -121,13 +121,33 @@
             "prompt": "Build the sentence: The apple is red",
             "words": ["apple", "The", "green", "is", "red"],
             "answer": ["The", "apple", "is", "red"]
-          },
+          }
+        ]
+      },
+      {
+        "id": "l4",
+        "title": "Fill in the Blank",
+        "questions": [
           {
             "type": "fill-blank",
             "prompt": "Fill in the blank",
             "sentence": "The sky is ___ today",
             "answer": "blue",
             "options": ["blue", "green", "loud", "fast"]
+          },
+          {
+            "type": "fill-blank",
+            "prompt": "Fill in the blank",
+            "sentence": "The frog is ___",
+            "answer": "green",
+            "options": ["green", "red", "loud", "tall"]
+          },
+          {
+            "type": "fill-blank",
+            "prompt": "Fill in the blank",
+            "sentence": "The sun is ___",
+            "answer": "yellow",
+            "options": ["yellow", "blue", "quiet", "small"]
           }
         ]
       }

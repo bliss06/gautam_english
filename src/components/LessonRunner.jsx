@@ -78,7 +78,7 @@ export default function LessonRunner({ lesson, onComplete, onExit }) {
       {/* Question area */}
       <div className="flex-1 flex items-center justify-center p-6">
         {QuestionComponent ? (
-          <QuestionComponent question={question} onAnswer={handleAnswer} />
+          <QuestionComponent key={questionIndex} question={question} onAnswer={handleAnswer} />
         ) : (
           <p className="text-red-500">Unknown question type: {question.type}</p>
         )}
