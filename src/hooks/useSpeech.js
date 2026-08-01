@@ -9,7 +9,7 @@ export function useTTS() {
     utter.rate = rate;
     utter.pitch = 1.1;
     const voices = window.speechSynthesis.getVoices();
-    const preferred = voices.find(v => v.name.includes('Samantha') || v.name.includes('Karen') || (v.lang === 'en-US' && v.localService));
+    const preferred = voices.find(v => v.name.includes('Ava') || v.name.includes('Samantha') || v.name.includes('Karen') || (v.lang === 'en-US' && v.localService));
     if (preferred) utter.voice = preferred;
     window.speechSynthesis.speak(utter);
   }, []);
