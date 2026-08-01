@@ -121,6 +121,13 @@
             "prompt": "Build the sentence: The apple is red",
             "words": ["apple", "The", "green", "is", "red"],
             "answer": ["The", "apple", "is", "red"]
+          },
+          {
+            "type": "fill-blank",
+            "prompt": "Fill in the blank",
+            "sentence": "The sky is ___ today",
+            "answer": "blue",
+            "options": ["blue", "green", "loud", "fast"]
           }
         ]
       }
