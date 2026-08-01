@@ -62,7 +62,8 @@ export default function LessonRunner({ lesson, onComplete, onExit }) {
     <div className="flex flex-col h-full">
       {/* Top bar */}
       <div className="flex items-center gap-3 p-4 pb-2">
-        <button onClick={onExit} className="text-gray-400 text-xl font-bold">✕</button>
+        <button onClick={onExit} aria-label="Close lesson"
+          className="flex items-center justify-center w-11 h-11 -ml-2 text-gray-400 text-2xl font-bold rounded-full active:bg-gray-100">✕</button>
         <div className="flex-1 bg-gray-200 rounded-full h-3">
           <div className="bg-indigo-500 h-3 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }} />
